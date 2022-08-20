@@ -13,13 +13,13 @@ var ServerHostname string = "127.0.0.1:8068" // Server IP and Port
 func SendData(s net.Conn) {
 	counter := 0
 	for {
-		_, err := fmt.Fprintf(s, "Server is alive! \n") // send
+		_, err := fmt.Fprintf(s, "Server is alive! \n") // Send
 		counter++
 		if err != nil {
 			fmt.Println("Message sent!")
 			return
 		}
-		time.Sleep(time.Duration(3) * time.Second) //how much time to wait between heartbeat messages
+		time.Sleep(time.Duration(3) * time.Second) // How much time to wait between heartbeat messages
 	}
 }
 func RecvData(s net.Conn) {
@@ -46,9 +46,9 @@ func WorkActivation(arr []string) {
 }
 
 func main() {
-	CommandList := []string{"systemctl start nginx.service"} //This array contains commands that needs to be exicuted on this node
+	CommandList := []string{"systemctl start nginx.service"} // This array contains commands that need to be executed on this node
 	WorkActivation(CommandList)
-	SockListner, _ := net.Listen("tcp", ServerHostname) // choosing protocol and address for connection
+	SockListner, _ := net.Listen("tcp", ServerHostname) // Choosing protocol and address for connection
 	fmt.Println("Server is active and listening on ", ServerHostname)
 	fmt.Println("Waiting for connection")
 	for {
